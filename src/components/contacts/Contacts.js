@@ -1,23 +1,33 @@
 import styled from 'styled-components';
 import Button from '../button';
+import Spinner from '../spinner/Spinner';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/items/contactsItemsSlice';
-import { filteredContacts } from '../../redux/contacts/selectors/contactsSelectors';
+import {
+  filteredContacts,
+  isLoading,
+} from '../../redux/contacts/selectors/contactsSelectors';
+import { deleteContact } from '../../redux/contacts/operations/contactsOperations';
+// import { deleteContact } from '../../redux/contacts-vanila/contact-operations';
+
 export default function Contacts() {
   const dispatch = useDispatch();
   const contacts = useSelector(filteredContacts);
+  const loading = useSelector(isLoading);
   return (
-    <ul>
-      {contacts.map(person => (
-        <ListItem key={person.id}>
-          {person.name} : {person.number}
-          <Button
-            content="Delete"
-            handleClick={() => dispatch(deleteContact(person.id))}
-          />
-        </ListItem>
-      ))}
-    </ul>
+    <>
+      {loading && <Spinner />}
+      <ul>
+        {contacts.map(person => (
+          <ListItem key={person.id}>
+            {person.name} : {person.phone}
+            <Button
+              content="Delete"
+              handleClick={() => dispatch(deleteContact(person.id))}
+            />
+          </ListItem>
+        ))}
+      </ul>
+    </>
   );
 }
 export const ListItem = styled.li`

@@ -1,5 +1,4 @@
 import {
-  persistStore,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -9,7 +8,8 @@ import {
 } from 'redux-persist';
 import { configureStore } from '@reduxjs/toolkit';
 import logger from '../helpers/logger';
-import rootReducer from './contacts/contactsReducer';
+import reducer from './contacts/contactsRootReducer';
+// import reducer from './contacts-vanila/contact-reducer';
 
 const middleware = {
   serializableCheck: {
@@ -18,10 +18,10 @@ const middleware = {
 };
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer,
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware(middleware).concat(logger),
 });
 
-export const persistor = persistStore(store);
+export default store;

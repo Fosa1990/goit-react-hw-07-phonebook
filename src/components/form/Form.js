@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contacts/items/contactsItemsSlice';
 import { getItems } from '../../redux/contacts/selectors/contactsSelectors';
-import { nanoid } from 'nanoid';
 import styled from 'styled-components';
 import Section from '../section';
 import Container from '../container';
 import Title from '../title';
 import Button from '../button';
 import { NAME, NUMBER } from '../../helpers/constants';
+import { addContact } from '../../redux/contacts/operations/contactsOperations';
+// import { addContact } from '../../redux/contacts-vanila/contact-operations';
 
 export default function Form() {
   const contacts = useSelector(getItems);
   const dispatch = useDispatch();
-  const onSubmit = (id, name, number) => dispatch(addContact(id, name, number));
+  const onSubmit = (name, number) => dispatch(addContact(name, number));
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -35,11 +35,7 @@ export default function Form() {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    const dataContacts = {
-      name,
-      number,
-      id: nanoid(),
-    };
+    const dataContacts = { name, number };
     const isContactValid = validateContact(name, number, contacts);
     if (isContactValid) {
       onSubmit(dataContacts);
