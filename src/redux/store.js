@@ -17,7 +17,7 @@ const middleware = {
   },
 };
 
-export const store = configureStore({
+const store = configureStore({
   reducer,
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware =>
