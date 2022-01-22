@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFilter } from '../../redux/contacts/selectors/contactsSelectors';
 import { addFilter } from '../../redux/contacts/filter/contactsFilterReducer';
-// import { addFilter } from '../../redux/contacts-vanila/contact-actions';
 
 export default function Filter() {
   const dispatch = useDispatch();

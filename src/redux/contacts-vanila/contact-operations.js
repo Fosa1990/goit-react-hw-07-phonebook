@@ -24,7 +24,7 @@ export const fetchContacts = () => dispatch => {
 export const addContact = person => dispatch => {
   const contact = {
     name: person.name,
-    phone: person.number,
+    phone: person.phone,
     completed: false,
   };
   dispatch(addContactRequest());

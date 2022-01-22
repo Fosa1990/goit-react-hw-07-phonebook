@@ -8,21 +8,20 @@ import Title from '../title';
 import Button from '../button';
 import { NAME, NUMBER } from '../../helpers/constants';
 import { addContact } from '../../redux/contacts/operations/contactsOperations';
-// import { addContact } from '../../redux/contacts-vanila/contact-operations';
 
 export default function Form() {
   const contacts = useSelector(getItems);
   const dispatch = useDispatch();
-  const onSubmit = (name, number) => dispatch(addContact(name, number));
+  const onSubmit = (name, phone) => dispatch(addContact(name, phone));
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
-  const validateContact = (contactName, contactNumber, contacts) => {
+  const validateContact = (contactName, contactPhone, contacts) => {
     if (contacts.some(({ name }) => name === contactName)) {
       alert(`"${contactName}" is already in contacts!`);
       return false;
-    } else if (contacts.some(({ number }) => number === contactNumber)) {
-      alert(`"${contactNumber}" is already in contacts!`);
+    } else if (contacts.some(({ phone }) => phone === contactPhone)) {
+      alert(`"${contactPhone}" is already in contacts!`);
       return false;
     } else return true;
   };
@@ -30,13 +29,13 @@ export default function Form() {
   const handleInputChange = event => {
     const { name, value } = event.currentTarget;
     if (name === NAME) setName(value);
-    if (name === NUMBER) setNumber(value);
+    if (name === NUMBER) setPhone(value);
   };
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    const dataContacts = { name, number };
-    const isContactValid = validateContact(name, number, contacts);
+    const dataContacts = { name, phone };
+    const isContactValid = validateContact(name, phone, contacts);
     if (isContactValid) {
       onSubmit(dataContacts);
       onReset();
@@ -45,7 +44,7 @@ export default function Form() {
 
   const onReset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -71,7 +70,7 @@ export default function Form() {
             <FormInput
               type="tel"
               name="number"
-              value={number}
+              value={phone}
               placeholder="Enter phone number"
               onChange={handleInputChange}
               minLength="7"
@@ -84,7 +83,7 @@ export default function Form() {
           <Button
             content="Add contact"
             type="submit"
-            disabled={name === '' || number === ''}
+            disabled={name === '' || phone === ''}
           />
         </MainForm>
       </Container>

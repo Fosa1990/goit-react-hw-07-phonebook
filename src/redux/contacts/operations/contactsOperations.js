@@ -21,7 +21,7 @@ export const addContact = createAsyncThunk(
   async (person, { rejectWithValue }) => {
     const contact = {
       name: person.name,
-      phone: person.number,
+      phone: person.phone,
       id: nanoid(),
     };
     try {

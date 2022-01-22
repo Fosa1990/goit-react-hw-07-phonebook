@@ -7,7 +7,6 @@ import {
   isLoading,
 } from '../../redux/contacts/selectors/contactsSelectors';
 import { deleteContact } from '../../redux/contacts/operations/contactsOperations';
-// import { deleteContact } from '../../redux/contacts-vanila/contact-operations';
 
 export default function Contacts() {
   const dispatch = useDispatch();
@@ -65,7 +64,6 @@ const Th = styled.th`
 const Td = styled.td`
   padding: 7px 10px 7px 10px;
   text-align: center;
-  text-transform: capitalize;
   color: lightslategray;
   outline: 0.1px solid rgb(243, 237, 237);
 

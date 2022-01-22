@@ -9,7 +9,6 @@ import {
 import { configureStore } from '@reduxjs/toolkit';
 import logger from '../helpers/logger';
 import reducer from './contacts/contactsRootReducer';
-// import reducer from './contacts-vanila/contact-reducer';
 
 const middleware = {
   serializableCheck: {
