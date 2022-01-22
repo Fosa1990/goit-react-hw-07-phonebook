@@ -53,14 +53,14 @@ const Table = styled.table`
 const Tr = styled.tr`
   background-color: rgb(231, 231, 231);
   :nth-of-type(2n + 1) {
-    background-color: #fff;
+    background-color: var(--white);
   }
 `;
 const Th = styled.th`
   height: 50px;
   text-transform: uppercase;
   color: var(--yellow);
-  background-color: var(--light-blue);
+  background-color: var(--dark-purple);
 `;
 const Td = styled.td`
   padding: 7px 10px 7px 10px;
@@ -79,7 +79,7 @@ const Td = styled.td`
     box-shadow: none;
     background-color: transparent;
     :hover {
-      background-color: var(--light-blue);
+      background-color: var(--light-purple);
     }
   }
 `;
