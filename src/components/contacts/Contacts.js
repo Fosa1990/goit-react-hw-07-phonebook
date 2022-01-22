@@ -16,45 +16,70 @@ export default function Contacts() {
   return (
     <>
       {loading && <Spinner />}
-      <ul>
-        {contacts.map(person => (
-          <ListItem key={person.id}>
-            {person.name} : {person.phone}
-            <Button
-              content="Delete"
-              handleClick={() => dispatch(deleteContact(person.id))}
-            />
-          </ListItem>
-        ))}
-      </ul>
+      <Table>
+        <thead>
+          <Tr>
+            <Th>Name</Th>
+            <Th>Phone</Th>
+            <Th>Action</Th>
+          </Tr>
+        </thead>
+
+        <tbody>
+          {contacts.map(person => (
+            <Tr key={person.id}>
+              <Td>{person.name}</Td>
+              <Td>{person.phone}</Td>
+              <Td>
+                <Button
+                  content="Delete"
+                  handleClick={() => dispatch(deleteContact(person.id))}
+                />
+              </Td>
+            </Tr>
+          ))}
+        </tbody>
+      </Table>
     </>
   );
 }
-export const ListItem = styled.li`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  list-style: circle;
-  align-items: baseline;
-  width: 350px;
-  padding: 5px;
-  font-family: var(--font);
-  font-size: 18px;
-  line-height: 1.5;
-  ::before {
-    content: '';
-    display: block;
-    height: 7px;
-    width: 7px;
-    background-color: var(--yellow);
-    border-radius: 50%;
+
+const Table = styled.table`
+  margin-top: 25px;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px 0px #7c7c7c;
+`;
+const Tr = styled.tr`
+  background-color: rgb(231, 231, 231);
+  :nth-of-type(2n + 1) {
+    background-color: #fff;
   }
-  button {
-    margin: 5px 0 5px 10px;
-    padding: 3px 10px 3px 10px;
+`;
+const Th = styled.th`
+  height: 50px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  background-color: var(--light-blue);
+`;
+const Td = styled.td`
+  padding: 7px 10px 7px 10px;
+  text-align: center;
+  text-transform: capitalize;
+  color: lightslategray;
+  outline: 0.1px solid rgb(243, 237, 237);
+
+  Button {
+    margin: 0;
+    padding: 2px 0;
+    width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
     :hover {
-      background-color: var(--blue);
-      border: 1px solid var(--dark);
+      background-color: var(--light-blue);
     }
   }
 `;

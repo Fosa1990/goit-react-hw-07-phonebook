@@ -34,5 +34,5 @@ export const Span = styled.span`
   color: var(--yellow);
 `;
 export const Input = styled.input`
-  color: var(--blue);
+  color: var(--light-blue);
 `;

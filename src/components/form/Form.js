@@ -92,17 +92,22 @@ export default function Form() {
   );
 }
 export const MainForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
   padding: 5px;
   margin: 0 auto;
-  width: 250px;
+  width: 100%;
   font-family: var(--font);
   button {
-    margin: 0;
-    width: 100%;
+    margin: 0 auto;
+    width: 200px;
     padding: 5px 20px;
     :hover {
       background-color: var(--green);
-      border: 1px solid var(--blue);
+      border: 1px solid var(--light-blue);
     }
     :disabled:hover {
       cursor: not-allowed;
