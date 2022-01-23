@@ -8,6 +8,7 @@ import Title from '../title';
 import Button from '../button';
 import { NAME, NUMBER } from '../../helpers/constants';
 import { addContact } from '../../redux/contacts/operations/contactsOperations';
+import toast from 'react-hot-toast';
 
 export default function Form() {
   const contacts = useSelector(getItems);
@@ -18,10 +19,10 @@ export default function Form() {
 
   const validateContact = (contactName, contactPhone, contacts) => {
     if (contacts.some(({ name }) => name === contactName)) {
-      alert(`"${contactName}" is already in contacts!`);
+      toast.error(`"${contactName}" is already in contacts!`);
       return false;
     } else if (contacts.some(({ phone }) => phone === contactPhone)) {
-      alert(`"${contactPhone}" is already in contacts!`);
+      toast.error(`"${contactPhone}" is already in contacts!`);
       return false;
     } else return true;
   };

@@ -7,12 +7,14 @@ import Contacts from './components/contacts';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from './redux/contacts/operations/contactsOperations';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchContacts()), [dispatch]);
   return (
     <>
+      <Toaster position="top-right" />
       <Form />
       <Section>
         <Container>
