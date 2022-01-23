@@ -12,7 +12,7 @@ import { addContact } from '../../redux/contacts/operations/contactsOperations';
 export default function Form() {
   const contacts = useSelector(getItems);
   const dispatch = useDispatch();
-  const onSubmit = (name, phone) => dispatch(addContact(name, phone));
+  const onSubmit = dataContacts => dispatch(addContact(dataContacts));
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 

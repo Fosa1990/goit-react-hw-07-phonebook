@@ -1,15 +1,13 @@
 import styled from 'styled-components';
-import Button from '../button';
 import Spinner from '../spinner/Spinner';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   filteredContacts,
   isLoading,
 } from '../../redux/contacts/selectors/contactsSelectors';
-import { deleteContact } from '../../redux/contacts/operations/contactsOperations';
+import ContactsItem from './ContactsItem';
 
 export default function Contacts() {
-  const dispatch = useDispatch();
   const contacts = useSelector(filteredContacts);
   const loading = useSelector(isLoading);
   return (
@@ -26,16 +24,12 @@ export default function Contacts() {
 
         <tbody>
           {contacts.map(person => (
-            <Tr key={person.id}>
-              <Td>{person.name}</Td>
-              <Td>{person.phone}</Td>
-              <Td>
-                <Button
-                  content="Delete"
-                  handleClick={() => dispatch(deleteContact(person.id))}
-                />
-              </Td>
-            </Tr>
+            <ContactsItem
+              key={person.id}
+              name={person.name}
+              phone={person.phone}
+              id={person.id}
+            />
           ))}
         </tbody>
       </Table>
@@ -60,24 +54,4 @@ const Th = styled.th`
   text-transform: uppercase;
   color: var(--yellow);
   background-color: var(--dark-purple);
-`;
-const Td = styled.td`
-  padding: 7px 10px 7px 10px;
-  text-align: center;
-  color: lightslategray;
-  outline: 0.1px solid rgb(243, 237, 237);
-
-  Button {
-    margin: 0;
-    padding: 2px 0;
-    width: 100%;
-    height: auto;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
-    :hover {
-      background-color: var(--light-purple);
-    }
-  }
 `;
